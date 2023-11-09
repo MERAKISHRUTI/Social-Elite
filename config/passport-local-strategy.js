@@ -12,7 +12,7 @@ passport.use(
         .then((user)=>{
             if(!user || user.password!=password)
             {
-                console.log('invalid username/password');
+                console.log('invalid username/password or user not exist');
                 return done(null,false);
             }
             return done(null,user)

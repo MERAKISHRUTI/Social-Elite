@@ -1,3 +1,5 @@
+// video number 7=>authentication using passport.js
+
 const express=require('express');
 const cookieParser=require('cookie-parser');
 const app=express();
@@ -45,7 +47,7 @@ app.use(session({
     saveUninitialized:false,
     resave:false,
     cookie:{
-        maxAge:(1000 * 60 * 100)
+        maxAge:(1000)
     },
     store: new MongoStore({
         mongoUrl: 'mongodb://127.0.0.1/codeial_development',

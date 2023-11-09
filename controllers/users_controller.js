@@ -1,9 +1,17 @@
 const User=require('../models/user');
 
 module.exports.profile = function(req, res){
-    return res.render('user_profile',{
-        title:"codial || profile"
-    });
+    if(req.isAuthenticated())
+    {
+        if(user){
+            return res.render('user_profile',{
+                title:"codial || profile",
+                user:"user"
+            });
+        }
+        
+    }
+    
 }
 
 module.exports.signUp=function(req,res){
@@ -32,11 +40,13 @@ module.exports.create=function(req,res){
     // console.log(req.body)
     if(req.body.password!=req.body.confirm_password)
     {
+        console.log("pass and confirm pass is not sme")
         return res.redirect('back');
     }
     User.findOne({email:req.body.email})
     .then((user)=>{
        if(user){
+        // console.log(user)
         //a user with the same email exists
         console.log("a user with the same email exists")
         return res.redirect('/users/sign-in')
@@ -45,6 +55,7 @@ module.exports.create=function(req,res){
         //create a new user
         User.create(req.body)
         .then((newUser)=>{
+            // console.log(newUser)
             //redirect to sign-in page
             return res.redirect('/users/sign-in');
         })
