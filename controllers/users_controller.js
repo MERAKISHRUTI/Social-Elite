@@ -3,7 +3,7 @@ const User=require('../models/user');
 module.exports.profile = function(req, res){
     if(req.isAuthenticated())
     {
-        if(user){
+        if(res.locals.user){
             return res.render('user_profile',{
                 title:"codial || profile",
                 user:"user"
@@ -37,7 +37,7 @@ module.exports.signIn=function(req,res)
 
 
 module.exports.create=function(req,res){
-    // console.log(req.body)
+    // console.log(req.body
     if(req.body.password!=req.body.confirm_password)
     {
         console.log("pass and confirm pass is not sme")

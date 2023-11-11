@@ -41,13 +41,13 @@ app.set('views', './views');
 
 //mongo is used to store the session cookie in the db
 app.use(session({
-    name:'codial',
+    name:'socials',
     //change the sectret beofre deployemnt before production mode
     secret:'blahhh',
     saveUninitialized:false,
     resave:false,
     cookie:{
-        maxAge:(1000)
+        maxAge:(1000*60*60)
     },
     store: new MongoStore({
         mongoUrl: 'mongodb://127.0.0.1/codeial_development',
