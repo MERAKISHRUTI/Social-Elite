@@ -2,3 +2,7 @@ body {
   margin: 0;
   text-align: center;
   color: black; }
+
+#delete-item {
+  background: lightgreen;
+  color: black; }

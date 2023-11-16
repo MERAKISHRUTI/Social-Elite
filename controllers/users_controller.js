@@ -5,9 +5,8 @@ module.exports.profile = function(req, res){
     {
         if(res.locals.user){
             return res.render('user_profile',{
-                title:"codial || profile",
-                user:"user"
-            });
+                title:"codial || profile"
+             });
         }
         
     }

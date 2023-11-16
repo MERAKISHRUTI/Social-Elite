@@ -1,4 +1,5 @@
 const Post = require('../models/post')
+const Comment =require('../models/comment')
 
 module.exports.create = async function (req, res) {
     try {
@@ -22,6 +23,30 @@ module.exports.create = async function (req, res) {
   
 
 
-module.exports.destroy= function(req,res){
-   
-}
+
+module.exports.destroy = async function (req, res) {
+    try {
+        const postId = req.params.id.trim(); // Trim extra spaces from the ID
+        const post = await Post.findById(postId);
+
+        if (!post) {
+            console.log(req.params);
+            return res.redirect('back');
+        }
+
+        if (post.user.toString() === req.user.id) {
+            await post.deleteOne();
+            await Comment.deleteMany({ post: postId }); // Use the trimmed ID here
+
+            console.log(req.params);
+            return res.redirect('back');
+        } else {
+            return res.status(403).send('Permission denied'); // Or handle the unauthorized access in some way
+        }
+    } catch (err) {
+        console.error('Error:', err.message);
+        return res.redirect('back');
+    }
+};
+
+

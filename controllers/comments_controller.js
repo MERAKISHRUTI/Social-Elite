@@ -21,3 +21,13 @@ module.exports.create= async function(req,res){
         res.redirect('/');
       }
 }
+
+module.exports.destroy=function(req,res){
+  Comment.findById(req.params.id)
+  .then(()=>{
+
+  })
+  .catch(()=>{
+
+  })
+}
